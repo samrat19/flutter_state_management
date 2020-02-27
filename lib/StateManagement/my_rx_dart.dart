@@ -27,6 +27,11 @@ class _MyRxDartState extends State<MyRxDart> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _counterBloc.increment,
+        backgroundColor: Colors.amber,
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
