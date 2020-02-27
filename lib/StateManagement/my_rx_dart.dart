@@ -27,10 +27,21 @@ class _MyRxDartState extends State<MyRxDart> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _counterBloc.increment,
-        backgroundColor: Colors.amber,
-        child: Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton(
+            onPressed: _counterBloc.increment,
+            backgroundColor: Colors.amber,
+            child: Icon(Icons.add),
+          ),
+          SizedBox(width: 20.0,),
+          FloatingActionButton(
+            onPressed: _counterBloc.decrement,
+            backgroundColor: Colors.amber,
+            child: Icon(Icons.remove),
+          ),
+        ],
       ),
     );
   }
@@ -42,7 +53,7 @@ class CounterBloc {
 
   CounterBloc({this.initialCount}) {
     _subjectCounter = BehaviorSubject<int>.seeded(
-        this.initialCount); //initializes the subject with element already
+        this.initialCount); ///initializes the subject with element already
   }
 
   Stream<int> get counterObservable => _subjectCounter.stream;
@@ -52,10 +63,10 @@ class CounterBloc {
     _subjectCounter.sink.add(initialCount);
   }
 
-//  void decrement(){
-//    initialCount--;
-//    _subjectCounter.sink.add(initialCount);
-//  }
+  void decrement(){
+    initialCount--;
+    _subjectCounter.sink.add(initialCount);
+  }
 
   void dispose() {
     _subjectCounter.close();
