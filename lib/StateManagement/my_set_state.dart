@@ -10,7 +10,7 @@ class _MySetStateState extends State<MySetState> {
   int digit = 0;
   void addOne(){
     setState(() {
-      digit = digit + 1;
+      digit=digit+1;
     });
   }
 

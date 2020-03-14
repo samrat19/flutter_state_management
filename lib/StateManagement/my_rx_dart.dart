@@ -33,12 +33,14 @@ class _MyRxDartState extends State<MyRxDart> {
           FloatingActionButton(
             onPressed: _counterBloc.increment,
             backgroundColor: Colors.amber,
+            heroTag: 1,
             child: Icon(Icons.add),
           ),
           SizedBox(width: 20.0,),
           FloatingActionButton(
             onPressed: _counterBloc.decrement,
             backgroundColor: Colors.amber,
+            heroTag: 2,
             child: Icon(Icons.remove),
           ),
         ],
