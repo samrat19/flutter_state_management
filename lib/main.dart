@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_state_management/StateManagement/my_provider.dart';
 import 'package:flutter_state_management/StateManagement/my_rx_dart.dart';
 import 'package:flutter_state_management/StateManagement/my_set_state.dart';
@@ -15,9 +16,9 @@ main() => runApp(
           'set-state': (_) => MySetState(),
           'state-ful-builder': (_) => MyStatefulBuilder(),
           'rx-bloc': (_) => MyRxDart(),
-          'provider':(_) => MyProvider(),
+          'provider': (_) => MyProvider(),
           'home-page': (_) => HomePage(),
-          'stream-builder':(_) => MyStreamBuilder(),
+          'stream-builder': (_) => MyStreamBuilder(),
         },
       ),
     );
