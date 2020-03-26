@@ -7,7 +7,7 @@ class MyRxDart extends StatefulWidget {
 }
 
 class _MyRxDartState extends State<MyRxDart> {
-  CounterBloc _counterBloc = CounterBloc(initialCount: 0);
+  CounterBlocRX _counterBloc = CounterBlocRX(initialCount: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,11 @@ class _MyRxDartState extends State<MyRxDart> {
   }
 }
 
-class CounterBloc {
+class CounterBlocRX {
   int initialCount = 0;
   BehaviorSubject<int> _subjectCounter;
 
-  CounterBloc({this.initialCount}) {
+  CounterBlocRX({this.initialCount}) {
     _subjectCounter = BehaviorSubject<int>.seeded(
         this.initialCount); ///initializes the subject with element already
   }
