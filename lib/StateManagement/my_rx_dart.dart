@@ -7,7 +7,12 @@ class MyRxDart extends StatefulWidget {
 }
 
 class _MyRxDartState extends State<MyRxDart> {
-  CounterBlocRX _counterBloc = CounterBlocRX(initialCount: 0);
+
+  @override
+  void initState() {
+    super.initState();
+    counterBlocRX..getInitial();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class _MyRxDartState extends State<MyRxDart> {
       ),
       body: Center(
         child: StreamBuilder(
-          stream: _counterBloc.counterObservable,
+          stream: counterBlocRX.counterObservable,
           builder: (context, AsyncSnapshot<int> snapshot) => Text(
             snapshot.data.toString(),
             style: TextStyle(
@@ -31,14 +36,14 @@ class _MyRxDartState extends State<MyRxDart> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: _counterBloc.increment,
+            onPressed: counterBlocRX.increment,
             backgroundColor: Colors.amber,
             heroTag: 1,
             child: Icon(Icons.add),
           ),
           SizedBox(width: 20.0,),
           FloatingActionButton(
-            onPressed: _counterBloc.decrement,
+            onPressed: counterBlocRX.decrement,
             backgroundColor: Colors.amber,
             heroTag: 2,
             child: Icon(Icons.remove),
@@ -51,26 +56,27 @@ class _MyRxDartState extends State<MyRxDart> {
 
 class CounterBlocRX {
   int initialCount = 0;
-  BehaviorSubject<int> _subjectCounter;
+  final BehaviorSubject<int> _counterSubject = BehaviorSubject<int>();
 
-  CounterBlocRX({this.initialCount}) {
-    _subjectCounter = BehaviorSubject<int>.seeded(
-        this.initialCount); ///initializes the subject with element already
+  getInitial(){
+    _counterSubject.sink.add(0);
   }
 
-  Stream<int> get counterObservable => _subjectCounter.stream;
+  Stream<int> get counterObservable => _counterSubject.stream;
 
   void increment() {
     initialCount++;
-    _subjectCounter.sink.add(initialCount);
+    _counterSubject.sink.add(initialCount);
   }
 
   void decrement(){
     initialCount--;
-    _subjectCounter.sink.add(initialCount);
+    _counterSubject.sink.add(initialCount);
   }
 
   void dispose() {
-    _subjectCounter.close();
+    _counterSubject.close();
   }
 }
+
+final counterBlocRX = CounterBlocRX();
